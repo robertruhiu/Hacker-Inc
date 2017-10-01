@@ -1,4 +1,4 @@
-class UserProfile:
+class User:
     def __init__(self):
         self.__followers = []
 
@@ -11,16 +11,16 @@ class UserProfile:
         """
         self.__followers.append(follower)
 
-    def remove_follower(self, name_of_follower):
+    def remove_follower(self, id_of_follower):
         """
-        Removes a follower(user object) from list by name
+        Removes a follower(user object) from list by id
 
         :rtype: object
-        :param name_of_follower: the name of the follower to remove
+        :param id_of_follower: the name of the follower to remove
         :return: an object of the user if removed else None object
         """
         for a_follower in self.__followers:
-            if name_of_follower == a_follower.name:
+            if id_of_follower == a_follower.id:
                 self.__followers.remove(a_follower)
                 return a_follower
         return None
