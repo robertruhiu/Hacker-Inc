@@ -12,6 +12,10 @@ class Comment:
         likes = 0
         replies = []
     
+    def add_like_to_comment(self):
+        self.likes += 1
+
+
     def add_reply(self, reply):
         self.replies.append(reply)
 
