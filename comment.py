@@ -1,12 +1,12 @@
 
 class Reply:
-    def __init__(user, content):
+    def __init__(self, user, content):
         self.user = user
         self.content = content
 
 
 class Comment:
-    def __init__(user, content):
+    def __init__(self, user, content):
         self.user = user
         self.content = content
         self.likes = 0
@@ -14,7 +14,6 @@ class Comment:
     
     def add_like_to_comment(self):
         self.likes += 1
-
 
     def add_reply(self, reply):
         self.replies.append(reply)
