@@ -1,7 +1,7 @@
 class User :
     def __init__(self) :
         self.__id = None # set by the db engine if data's gon be saved in a db
-                         # else we'll have to make it a static field and increament
+                         # else we'll have to make it a static field and increment
                          #  it anytime an object is created out of this class
         self.__firs_tname = None
         self.__last_name = None
@@ -29,7 +29,11 @@ class User :
 
         self.__posts = [] # a list of post ids
 
-
+    def get_id(self):
+        """
+        :return:
+        """
+        return self.__id
 
 
 class UserManager:
@@ -37,22 +41,27 @@ class UserManager:
     def __init__(self):
         self.__users = []
 
-    def add_user(self, user):
-        
-
-    def create(self):
-        pass
 
     def delete_user(self, user_id):
-        pass
+        """
+
+        :param user_id:
+        :return:
+        """
+        self.remove_user(user_id)
 
         # def
 
-    def person_exists(self, name) :
+    def person_exists(self, user_id) :
+        """
+
+        :param user_id:
+        :return:
+        """
         people = self.__users
         for person in people :
 
-            if (person.get_name() == name) :
+            if (person.get_id() == user_id) :
                 return person
         return False
 
@@ -64,31 +73,46 @@ class UserManager:
         """
         return (len(self.__users) == 0)
 
-    def add_person(self, person) :
+    def add_user(self, person) :
+        """
+
+        :param person:
+        :return:
+        """
         people = self.__users 
         if self.is_empty() :
             people.append(person)
 
         else :
-            if not self.person_exists(person.get_name()) :
+            if not self.person_exists(person.get_id()) :
                 people.append(person)
             else :
-                return "contact already exists"
+                return "user already exists"
 
-    def remove_person(self, person_name) :
+    def remove_user(self, user_id) :
+        """
+
+        :param user_id:
+        :return:
+        """
         people = self.__users 
         if self.is_empty() :
             return "cannot remove from an empty list"
         else :
-            person = self.person_exists(person_name)
+            person = self.person_exists(user_id)
 
             if person :
                 people.remove(person)
                 return person
             else :
-                return "eit not found"
+                return "user not found"
 
-    def find(self, person_name):
-        person = self.person_exists(person_name)
+    def find_user(self, user_id):
+        """
 
-        return "person not found" if person == False else person
+        :param user_id:
+        :return:
+        """
+        person = self.person_exists(user_id)
+
+        return "user not found" if person == False else person
