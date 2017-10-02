@@ -2,6 +2,11 @@ class User:
     def __init__(self):
         self.__followers = []
 
+
+class UserManager:
+    def __init__(self):
+        self.__users = []
+
     def add_follower(self, follower):
         """
         Adds a follower(user object) to a list
