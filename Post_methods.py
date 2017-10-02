@@ -13,7 +13,7 @@ class Post:
 
 			self.user_id
 
-			## get data from save source and return the data
+			## get data from save source and return the data 
 
 		def create_post(self, post_id, user_id, body, created_at):
 			'''
@@ -93,16 +93,3 @@ class Post:
 			self.like = like.append(user_id)
 			return like
 			
-
-
-
-
-
-
-
-
-			
-
-
-
-
