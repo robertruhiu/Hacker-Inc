@@ -30,8 +30,65 @@ class User :
         self.__posts = [] # a list of post ids
 
 
+
+
+class UserManager:
+
+    def __init__(self):
+        self.__users = []
+
+    def add_user(self, user):
+        
+
     def create(self):
         pass
 
     def delete_user(self, user_id):
         pass
+
+        # def
+
+    def person_exists(self, name) :
+        people = self.__users
+        for person in people :
+
+            if (person.get_name() == name) :
+                return person
+        return False
+
+    def is_empty(self) :
+        """
+        :param self:
+        :param type: string
+        :return:
+        """
+        return (len(self.__users) == 0)
+
+    def add_person(self, person) :
+        people = self.__users 
+        if self.is_empty() :
+            people.append(person)
+
+        else :
+            if not self.person_exists(person.get_name()) :
+                people.append(person)
+            else :
+                return "contact already exists"
+
+    def remove_person(self, person_name) :
+        people = self.__users 
+        if self.is_empty() :
+            return "cannot remove from an empty list"
+        else :
+            person = self.person_exists(person_name)
+
+            if person :
+                people.remove(person)
+                return person
+            else :
+                return "eit not found"
+
+    def find(self, person_name):
+        person = self.person_exists(person_name)
+
+        return "person not found" if person == False else person
