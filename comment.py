@@ -9,8 +9,8 @@ class Comment:
     def __init__(user, content):
         self.user = user
         self.content = content
-        likes = 0
-        replies = []
+        self.likes = 0
+        self.replies = []
     
     def add_like_to_comment(self):
         self.likes += 1
