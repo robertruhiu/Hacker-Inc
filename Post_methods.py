@@ -1,3 +1,5 @@
+from crud_csv import save_csv, read_csv
+
 class Post:
 		def __init__(self, post_id):
 			self.post_id = post_id
@@ -15,7 +17,7 @@ class Post:
 
 			## get data from save source and return the data
 
-		def create_post(self, post_id, user_id, body, created_at):
+		def create_post(self, post_id, user_id, body, created_at, updated_at = ''):
 			'''
 			The method allows you to create a post
 
@@ -28,11 +30,12 @@ class Post:
 			self.user_id = user_id
 			self.body = body
 			self.created_at = created_at
-			save_post = {"post_id":post_id, "user_id":user_id, "body":body, "created_at":created_at}
+			self.updated_at = updated_at
+			save_post = {"post_id":post_id, "user_id":user_id, "body":body, "created_at":created_at, "updated_at": updated_at}
 			return save_post
 
 
-		def edit_post(self, post_id, user_id, body, updated_at):
+		def edit_post(self, post_id, user_id, updated_at):
 
 			'''
 			The method allows you to update a post
@@ -44,9 +47,8 @@ class Post:
 			
 			self.post_id = post_id
 			self.user_id = user_id
-			self.body = body
 			self.updated_at = updated_at
-			upadte_post = {"post_id":post_id, "user_id":user_id, "body":body, "updated_at":updated_at}
+			upadte_post = {"post_id":post_id, "user_id":user_id, "updated_at":updated_at}
 			return updated_post
 
 
@@ -99,4 +101,25 @@ class Post:
 
 
 post = Post(1)
+save_post = post.create_post(1, 1, "My First Blog Post", "2nd October 2017")
+
+
+
+"""file_name = "posts.csv" 
+fieldnames = ['post_id', 'user_id', 'body', 'created_at', 'updated_at'] 
+dictionary = save_post
+save_csv(file_name, fieldnames, save_post)"""
+
+file_name = "posts.csv"
+read_csv(file_name)
+
+
+
+
+
+
+
+
+
+
 
