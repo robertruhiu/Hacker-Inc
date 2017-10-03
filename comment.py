@@ -19,6 +19,6 @@ class Comment:
         self.__replies.append(reply)
 
     def delete_reply(self, reply):
-        for rep in self.replies:
+        for rep in self.__replies:
             if rep == reply:
                 self.replies.pop(rep)
