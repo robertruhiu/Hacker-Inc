@@ -3,6 +3,11 @@ class User:
         self.__followers = []
 
     def add_follower_id(self, id_of_follower):
+        """
+
+        :param id_of_follower:
+        :return:
+        """
         if id_of_follower not in self.__followers:
             self.__followers.append(id_of_follower)
             return True
@@ -10,11 +15,20 @@ class User:
             return False
 
     def remove_follower_id(self, id_of_follower):
+        """
+
+        :param id_of_follower:
+        :return:
+        """
+        if id_of_follower in self.__followers:
             self.__followers.remove(id_of_follower)
+            return True
+        else:
+            return False
 
     def get_all_followers_ids(self):
         """
-        :return:
+        :return: all the ids of a user's followers
         """
         return self.__followers
 
@@ -50,9 +64,7 @@ class UserManager:
         temp_user = self.find_user_by_id(user_id)
 
         if temp_user != "user not found":
-            user = User(temp_user)
-            temp_user = None
-            user.add_follower_id(id_of_follower)
+            User(temp_user).add_follower_id(id_of_follower)
         else:
             return "follower not added because user does not exist"
 
@@ -71,11 +83,9 @@ class UserManager:
         temp_user = self.find_user_by_id(user_id)
 
         if temp_user != "user not found":
-            if id_of_follower in User(temp_user).get_all_followers_ids():
-                User(temp_user).remove_follower_id(id_of_follower)
-                return True
+            User(temp_user).remove_follower_id(id_of_follower)
         else:
-            return "follower not added because user does not exist"
+            return "follower not removed because user does not exist"
 
     def find_user_by_id(self, user_id):
         """
