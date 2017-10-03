@@ -1,3 +1,9 @@
+import hashlib
+
+import time
+from mako.exceptions import UnsupportedError
+
+
 class User :
     users_count = 0
     def __init__(self, first_name, last_name, email, password) :
@@ -12,7 +18,10 @@ class User :
         self.__last_name = last_name
         self.__email = email
         self.__gender = None
-        self.__password = password
+        self.__password = self.hash(password)
+
+        print(self.hash(self.__password))
+        print(hashlib.sha256(self.__password))
         self.__date_registered = None
         self.__dob = None
         self.__educational_background = None #will contain an object of the ed_bg class
@@ -31,6 +40,9 @@ class User :
         self.__connections = [] # a list of user ids
 
         self.__posts = [] # a list of post ids
+
+
+        self.info = None
         #endregion
 
     def get_id(self):
@@ -39,16 +51,34 @@ class User :
         """
         return self.__id
 
-    def set_id(self, id):
-        self.__id = id
+    def add_link(self, url):
+        pass
 
+    def hash(self, password : str):
+        """
+
+        :param password: string
+        :return:
+        """
+
+        hasher_256 = hashlib.sha256()
+        hasher_256.update(password.encode('utf-8'))
+
+        sha256 = hasher_256.hexdigest()
+        return sha256
+
+    def get_password(self):
+        return self.__password
+
+
+
+
+    # def set_id(self, id):
+    #     self.__id = id
     # def edit(self, id = 0, ):
 
     def __repr__(self):
         return "{} {}".format(self.__first_name, self.__last_name )
-
-
-
 
 
 
@@ -148,14 +178,21 @@ class UserManager:
             if new_key in valid_keys:
                 # print(new_data[key])
                 temp_user.__dict__[new_key] = new_data[key]
+        valid_keys = None
         return temp_user
+
+
 
 
 mgr = UserManager()
 
 mgr.add_user(User("kwame", "nsiah", "ss@sds.cof", "asadssd"))
-mgr.add_user(User("kwabena", "agyekum", "ss@sds.cof", "asadssd"))
-# print(mgr.find_user_by_id(1))
-# print(mgr.find_user_by_id(2))
 
-print(mgr.edit_user(1, {"first_name" : "new name", "last_name" : "nw-lst-nm"}))
+mgr.add_user(User("kwabena", "agyekum", "ss@sds.cof", "asadssd"))
+
+print(mgr.find_user_by_id(1))
+
+print(mgr.find_user_by_id(2))
+print(mgr.find_user_by_id(3))
+
+print(mgr.edit_user(1, {"first_name" : "new firstname", "last_name" : "nw-lst-nm"}))
